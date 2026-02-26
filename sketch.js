@@ -7,11 +7,62 @@ var steps = 800;
 var batchSize = 50;
 var currentIndex = 0;
 var maxTotalOps = 5000000;
+var baggrundsFarve;
+
+
+function generateVariation(hexColor) {
+  colorMode(HSL, 360, 100, 100);
+  let col = color(hexColor);
+  let h = hue(col);
+  let s = saturation(col);
+  let l = lightness(col);
+  colorMode(RGB, 255);
+
+  // Hvis farven er mørk, lav en lys baggrund — og omvendt
+  let newL;
+  if (l < 50) {
+    newL = map(farveInput, 3, 100, 85, 95); // lys baggrund
+  } else {
+    newL = map(farveInput, 3, 100, 15, 5);  // mørk baggrund
+  }
+
+  colorMode(HSL, 360, 100, 100);
+  let variation = color(h, s, constrain(newL, 0, 100));
+  colorMode(RGB, 255);
+
+  return "#" + hex(red(variation),   2)
+             + hex(green(variation), 2)
+             + hex(blue(variation),  2);
+}
+
+/*function generateVariation(hexColor) {
+  colorMode(RGB, 255);
+  let col = color(hexColor);
+
+  // Beregn luminans for at afgøre om vi blander mod hvid eller sort
+  let r = red(col) / 255;
+  let g = green(col) / 255;
+  let b = blue(col) / 255;
+  let luminans = 0.299 * r + 0.587 * g + 0.114 * b;
+
+  let blendTarget = luminans < 0.5 ? color(255, 255, 255) : color(0, 0, 0);
+
+  // farveInput (3–100) styrer hvor meget vi blander mod hvid/sort
+  let blendAmount = map(farveInput, 3, 100, 0.2, 0.7);
+
+  let variation = lerpColor(col, blendTarget, blendAmount);
+
+  return "#" + hex(red(variation),   2)
+             + hex(green(variation), 2)
+             + hex(blue(variation),  2);
+}*/
 
 function setup() {
   cnv = createCanvas(1210, 708);
   cnv.parent("main");
-  background(255);
+
+  baggrundsFarve = generateVariation(brugerFarve);
+  background(baggrundsFarve);
 
   setupControls();
   initParticles();
@@ -24,17 +75,9 @@ function draw() {
     var radius = map(i, 0, nums, 1, 2);
 
     for (var s = 0; s < steps; s++) {
-      stroke(140, 152, 73);
+      stroke(brugerFarve);
       particles_a[i].move();
       particles_a[i].display(radius);
-
-      stroke(46, 65, 21);
-      particles_b[i].move();
-      particles_b[i].display(radius);
-
-      stroke(201, 203, 83);
-      particles_c[i].move();
-      particles_c[i].display(radius);
     }
   }
 
@@ -62,7 +105,8 @@ function initParticles() {
 }
 
 function newPattern() {
-  background(255);
+  baggrundsFarve = generateVariation(brugerFarve);
+  background(baggrundsFarve);
   currentIndex = 0;
   batchSize = calcBatchSize();
   initParticles();

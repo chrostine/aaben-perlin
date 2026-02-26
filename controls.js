@@ -2,13 +2,30 @@ var numsControl;
 var noiseScaleControl;
 var stepsControl;
 var alkoholControl;
+var farveControl;
+
+ // fallback/default
+var brugerFarve = "#000000";
+var farveInput = 3;
 
 function setupControls() {
+
+  // color picker
+  farveControl = document.getElementById("farve");
+  farveControl.addEventListener("sl-change", () => {
+    brugerFarve = farveControl.value;
+  });
+
+  // ebc
+  const colorControl = document.getElementById("ebc");
+  colorControl.addEventListener("sl-input", () => {
+  farveInput = parseFloat(colorControl.value) || 3;
+});
+
   alkoholControl = document.getElementById("alkohol");
   alkoholControl.addEventListener("sl-input", () => {
     var alkohol = parseFloat(alkoholControl.value);
     if (!isNaN(alkohol)) {
-      // Map alkohol (0-20%) til nums (min-max)
       var mapped = map(alkohol, 0, 20, Number(numsControl.min), Number(numsControl.max));
       numsControl.value = constrain(mapped, Number(numsControl.min), Number(numsControl.max));
       nums = Number(numsControl.value);
@@ -47,7 +64,6 @@ function setupControls() {
 function randomizeParameters() {
   randomSeed(millis());
 
-  // Randomize overruler alkohol-inputtet
   numsControl.value = random(Number(numsControl.min), Number(numsControl.max));
   noiseScaleControl.value = random(Number(noiseScaleControl.min), Number(noiseScaleControl.max));
   stepsControl.value = random(Number(stepsControl.min), Number(stepsControl.max));

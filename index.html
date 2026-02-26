@@ -15,15 +15,16 @@
     <div id="nav">
       <sl-details summary="Opret øl">
         <div id="dropned">
-          <sl-input id="color" placeholder="Farve" maxlength="15" size="small" pill></sl-input>
+          <sl-input id="ebc" placeholder="Farve" maxlength="15" size="small" pill></sl-input>
           <sl-input id="bitter" placeholder="Bitterhed" maxlength="15" size="small" pill></sl-input>
           <sl-input id="alkohol" placeholder="Alkoholprocent" maxlength="15" size="small" pill></sl-input>
+          <sl-color-picker id="farve" label="Select a color"></sl-color-picker>
           <sl-button id="create">Lav ny</sl-button>
         </div>
       </sl-details>
       <sl-details summary="Udvikler">
         <div id="dropned">
-          <sl-range label="Partikler" id="nums" min="10" max="1000" value="200" step="1"></sl-range>
+          <sl-range label="Partikler" id="nums" min="250" max="1500" value="200" step="1"></sl-range>
           <sl-range label="Noise scale" id="noiseScale" min="10" max="1000" value="200" step="1"></sl-range>
           <sl-range label="Steps" id="steps" min="10" max="1000" value="800" step="1"></sl-range>
           <sl-button id="randomize">Tilfældig</sl-button>
