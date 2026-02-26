@@ -1,0 +1,52 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+  background-color: rgb(64, 64, 64);
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+}
+
+#nav {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  gap: 5px;
+  padding: 16px;
+  margin: 0;
+  box-sizing: border-box;
+  width: 260px;
+  height: 100%;
+  z-index: 1;
+}
+
+#nav>* {
+  width: 100%;
+}
+
+#dropned{
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  gap: 5px;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0;
+  flex-grow: 1;
+  min-width: 0;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  display: block;
+}

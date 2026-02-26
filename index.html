@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/themes/light.css" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/shoelace-autoloader.js"></script>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <div id="container">
+    <div id="nav">
+      <sl-details summary="Opret øl">
+        <div id="dropned">
+          <sl-input id="color" placeholder="Farve" maxlength="15" size="small" pill></sl-input>
+          <sl-input id="bitter" placeholder="Bitterhed" maxlength="15" size="small" pill></sl-input>
+          <sl-input id="alkohol" placeholder="Alkoholprocent" maxlength="15" size="small" pill></sl-input>
+          <sl-button id="create">Lav ny</sl-button>
+        </div>
+      </sl-details>
+      <sl-details summary="Udvikler">
+        <div id="dropned">
+          <sl-range label="Partikler" id="nums" min="10" max="1000" value="200" step="1"></sl-range>
+          <sl-range label="Noise scale" id="noiseScale" min="10" max="1000" value="200" step="1"></sl-range>
+          <sl-range label="Steps" id="steps" min="10" max="1000" value="800" step="1"></sl-range>
+          <sl-button id="randomize">Tilfældig</sl-button>
+        </div>
+      </sl-details>
+      
+    </div>
+    <div id="main"></div>
+  </div>
+  <script src="controls.js"></script>
+  <script src="sketch.js"></script>
+</body>
+
+</html>
