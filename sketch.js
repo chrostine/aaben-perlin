@@ -9,6 +9,8 @@ var currentIndex = 0;
 var maxTotalOps = 5000000;
 var baggrundsFarve;
 
+let img_aa_right, img_aa_left, aaben_label;
+
 
 function generateVariation(hexColor) {
   colorMode(HSL, 360, 100, 100);
@@ -35,27 +37,12 @@ function generateVariation(hexColor) {
              + hex(blue(variation),  2);
 }
 
-/*function generateVariation(hexColor) {
-  colorMode(RGB, 255);
-  let col = color(hexColor);
+function preload() {
+  img_aa_right = loadImage('/assets/aa_right.svg');
+  img_aa_left = loadImage('/assets/aa_left.svg');
+  aaben_label = loadImage('/assets/aaben_label.png');
 
-  // Beregn luminans for at afgøre om vi blander mod hvid eller sort
-  let r = red(col) / 255;
-  let g = green(col) / 255;
-  let b = blue(col) / 255;
-  let luminans = 0.299 * r + 0.587 * g + 0.114 * b;
-
-  let blendTarget = luminans < 0.5 ? color(255, 255, 255) : color(0, 0, 0);
-
-  // farveInput (3–100) styrer hvor meget vi blander mod hvid/sort
-  let blendAmount = map(farveInput, 3, 100, 0.2, 0.7);
-
-  let variation = lerpColor(col, blendTarget, blendAmount);
-
-  return "#" + hex(red(variation),   2)
-             + hex(green(variation), 2)
-             + hex(blue(variation),  2);
-}*/
+}
 
 function setup() {
   cnv = createCanvas(1210, 708);
@@ -63,6 +50,17 @@ function setup() {
 
   baggrundsFarve = generateVariation(brugerFarve);
   background(baggrundsFarve);
+
+   // Å logo
+
+  /*image(aaben_label,  0, 0,  width, height, 0, 0, aaben_label.width, aaben_label.height, CONTAIN);
+
+  var h = height / 2;
+  var w_left  = h * (img_aa_left.width  / img_aa_left.height);  // bevar aspect ratio
+  var w_right = h * (img_aa_right.width / img_aa_right.height);
+
+  image(img_aa_left,  0, height/2 - h/2, w_left,  h);
+  image(img_aa_right, width - w_right, height/2 - h/2, w_right, h);*/
 
   setupControls();
   initParticles();
@@ -83,10 +81,13 @@ function draw() {
 
   currentIndex += batchSize;
   if (currentIndex >= nums) {
+     // Å logo
+    image(aaben_label, 0, 0, width, height, 0, 0, aaben_label.width, aaben_label.height, CONTAIN);
     noLoop();
   }
 }
 
+// perlin
 function calcBatchSize() {
   var totalOps = nums * steps * 3;
   var framesNeeded = max(totalOps / maxTotalOps * 60, 1);

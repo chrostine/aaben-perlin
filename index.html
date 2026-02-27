@@ -13,13 +13,17 @@
 <body>
   <div id="container">
     <div id="nav">
-      <sl-details summary="Opret øl">
+      <sl-details summary="Information">
         <div id="dropned">
-          <sl-input id="ebc" placeholder="Farve" maxlength="15" size="small" pill></sl-input>
-          <sl-input id="bitter" placeholder="Bitterhed" maxlength="15" size="small" pill></sl-input>
-          <sl-input id="alkohol" placeholder="Alkoholprocent" maxlength="15" size="small" pill></sl-input>
+          <sl-input label="Navn" id="navn" placeholder="Navn" maxlength="30" size="small" pill></sl-input>
+        </div>
+      </sl-details>
+      <sl-details summary="Egenskaber">
+        <div id="dropned">
+          <sl-input label="ABV" id="alkohol" placeholder="Alkoholprocent" maxlength="15" size="small" pill></sl-input>
+          <sl-input label="IBU" id="bitter" placeholder="Bitterhed" maxlength="15" size="small" pill></sl-input>
+          <sl-input label="EBC" id="ebc" placeholder="Farve" maxlength="15" size="small" pill></sl-input>
           <sl-color-picker id="farve" label="Select a color"></sl-color-picker>
-          <sl-button id="create">Lav ny</sl-button>
         </div>
       </sl-details>
       <sl-details summary="Udvikler">
@@ -30,7 +34,8 @@
           <sl-button id="randomize">Tilfældig</sl-button>
         </div>
       </sl-details>
-      
+      <sl-button id="create">Lav ny</sl-button>
+      <sl-button id="gem">Gem label</sl-button>
     </div>
     <div id="main"></div>
   </div>
