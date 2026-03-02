@@ -1,47 +1,42 @@
-var numsControl;
-var noiseScaleControl;
-var stepsControl;
-var alkoholControl;
-var farveControl;
-var bitterControl;
-var seedControl;
+var numsControl, noiseScaleControl, stepsControl, alkoholControl, bitterControl, seedControl;
 
  // fallback/default
 var brugerFarve = "#000000";
 var farveInput = 3;
-
 var labelCount = 1;
-var navnInput = "";
+var navnInput = "Cloud Gazing";
+var stilInput = "West Coast IPA";
+var clInput = "44";
+var alkoholInput = "6.2";
 
 function setupControls() {
 
+  // Tekst
   const navnControl = document.getElementById("navn");
   navnControl.addEventListener("sl-input", () => {
     navnInput = navnControl.value || "";
   });
 
-  // color picker
-  farveControl = document.getElementById("farve");
-  farveControl.addEventListener("sl-change", () => {
-    brugerFarve = farveControl.value;
+  const stilControl = document.getElementById("stil");
+  stilControl.addEventListener("sl-input", () => {
+    stilInput = stilControl.value || "";
   });
 
-  // ebc
-  const colorControl = document.getElementById("ebc");
-  colorControl.addEventListener("sl-input", () => {
-  farveInput = parseFloat(colorControl.value) || 3;
-});
+  const clControl = document.getElementById("cl");
+  clControl.addEventListener("sl-input", () => {
+    clInput = clControl.value || "";
+  });
 
   alkoholControl = document.getElementById("alkohol");
   alkoholControl.addEventListener("sl-input", () => {
-    var alkohol = parseFloat(alkoholControl.value || 0);
-    if (!isNaN(alkohol)) {
-      var mappedNums = map(alkohol, 0, 20, Number(numsControl.min), Number(numsControl.max));
+    alkoholInput = parseFloat(alkoholControl.value || 0);
+    if (!isNaN(alkoholInput)) {
+      var mappedNums = map(alkoholInput, 0, 20, Number(numsControl.min), Number(numsControl.max));
       numsControl.value = constrain(mappedNums, Number(numsControl.min), Number(numsControl.max));
       nums = Number(numsControl.value);
 
       // Steps
-      var mappedSteps = map(alkohol, 0, 20, Number(stepsControl.min), Number(stepsControl.max));
+      var mappedSteps = map(alkoholInput, 0, 20, Number(stepsControl.min), Number(stepsControl.max));
       stepsControl.value = constrain(mappedSteps, Number(stepsControl.min), Number(stepsControl.max));
       steps = Number(stepsControl.value);
     }
@@ -78,7 +73,18 @@ function setupControls() {
 
   const createControl = document.getElementById("create");
   createControl.addEventListener("click", () => {
+    getColors();
     newPattern();
+  });
+
+  const updateControl = document.getElementById("update");
+  updateControl.addEventListener("click", () => {
+    newPattern();
+  });
+
+  const ImgControl = document.getElementById("nytImg");
+  ImgControl.addEventListener("click", () => {
+    getImg();
   });
 
   const randomizeControl = document.getElementById("randomize");

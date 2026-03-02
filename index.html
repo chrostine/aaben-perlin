@@ -13,33 +13,36 @@
 <body>
   <div id="container">
     <div id="nav">
-      <sl-details summary="Information">
+      <sl-details summary="Opret øl">
         <div id="dropned">
-          <sl-input label="Navn" id="navn" placeholder="Navn" maxlength="30" size="small" pill></sl-input>
+          <sl-input label="Navn" id="navn" placeholder="Cloud Gazing" maxlength="30" size="small" pill></sl-input>
+          <sl-input label="Stilart" id="stil" placeholder="West Coast IPA" maxlength="30" size="small" pill></sl-input>
+          <sl-input label="CL" id="cl" placeholder="44" maxlength="4" size="small" pill></sl-input>
+          <sl-input label="ABV" id="alkohol" placeholder="6.2" maxlength="15" size="small" pill></sl-input>
+          <sl-input label="IBU" id="bitter" placeholder="16" maxlength="15" size="small" pill></sl-input>
+          <sl-button id="update">Opdater</sl-button>
         </div>
       </sl-details>
-      <sl-details summary="Egenskaber">
-        <div id="dropned">
-          <sl-input label="ABV" id="alkohol" placeholder="Alkoholprocent" maxlength="15" size="small" pill></sl-input>
-          <sl-input label="IBU" id="bitter" placeholder="Bitterhed" maxlength="15" size="small" pill></sl-input>
-          <sl-input label="EBC" id="ebc" placeholder="Farve" maxlength="15" size="small" pill></sl-input>
-          <sl-color-picker id="farve" label="Select a color"></sl-color-picker>
-        </div>
-      </sl-details>
+
       <sl-details summary="Udvikler">
         <div id="dropned">
-          <sl-range label="Partikler" id="nums" min="250" max="1500" value="200" step="1"></sl-range>
+          <sl-range label="Partikler" id="nums" min="500" max="1000" value="200" step="1"></sl-range>
           <sl-range label="Noise scale" id="noiseScale" min="10" max="1000" value="200" step="1"></sl-range>
-          <sl-range label="Steps" id="steps" min="10" max="1000" value="800" step="1"></sl-range>
+          <sl-range label="Steps" id="steps" min="500" max="1000" value="800" step="1"></sl-range>
           <sl-button id="randomize">Tilfældig</sl-button>
         </div>
       </sl-details>
+      
       <sl-button id="create">Lav ny</sl-button>
+      <sl-button id="nytImg">Ny farvepalette</sl-button>
       <sl-button id="gem">Gem label</sl-button>
     </div>
-    <div id="main"></div>
+    <div id="label"></div>
   </div>
-  <script src="controls.js"></script>
+  <script src="scripts/controls.js"></script>
+  <script src="scripts/img.js"></script>
+  <script src="scripts/farve.js"></script>
+  <script src="scripts/perlin.js"></script>
   <script src="sketch.js"></script>
 </body>
 
