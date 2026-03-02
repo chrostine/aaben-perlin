@@ -21,7 +21,7 @@ function draw() {
   var end = min(currentIndex + batchSize, nums);
 
   for (var i = currentIndex; i < end; i++) {
-    var radius = map(i, 0, nums, 6, 10); // 1-10 strtyer tykkelse
+    var radius = map(i, 0, nums, 6, 10); // 1-10 strtyer tykkelse. Hvordan gør jeg tykkelsen afhængig af længden?
 
     for (var s = 0; s < steps; s++) {
       stroke(farve1);
