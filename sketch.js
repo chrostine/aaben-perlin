@@ -1,9 +1,11 @@
-let aaben_label;
+let aaben_label_light;
+let aaben_label_dark;
 let skrift = "Helvetica";
-
+let darkMode = false;
 
 function preload() {
-  aaben_label = loadImage('/assets/aaben_label_black.png');
+  aaben_label_light = loadImage('/assets/label_sort.png');
+  aaben_label_dark = loadImage('/assets/label_hvid.png');
 }
 
 function setup() {
@@ -50,21 +52,38 @@ function draw() {
   currentIndex += batchSize;
   if (currentIndex >= nums) {
     // Å logo
-    image(aaben_label, 0, 0, width, height, 0, 0, aaben_label.width, aaben_label.height, CONTAIN);
+    if(darkMode == false) {
+      image(aaben_label_light, 0, 0, width, height, 0, 0, aaben_label_light.width, aaben_label_light.height, CONTAIN);
+    } else {
+      image(aaben_label_dark, 0, 0, width, height, 0, 0, aaben_label_dark.width, aaben_label_dark.height, CONTAIN);
+    }
+    
     noLoop();
   }
 
   // Typografi
-  fill(0);
+  if (darkMode == false){
+      fill(0);
+  } else {
+    fill(255);
+  }
+
   textFont(skrift); // Systemfont aka "Websafe"
+  textLeading(32); // linjeafstand
+
   textSize(75);
   text(navnInput, 1275, 292)
-
-  textFont(skrift);
+  
   textSize(45);
   text(stilInput, 1275, 355)
 
-  textFont(skrift);
   textSize(45);
   text(clInput + " cl / Alc. " + alkoholInput +"% vol.", 1275, 395)
+
+  textSize(32);
+  text(navnInput + " " + beskrivelseInput, 1275, 425, 620, 400)
+
+  textSize(25);
+  text(filtreretInput, 1275, 608)
+  drawIngredients("Ingredients: " + ingrediensInput, 1275, 665, 615, 400)
 }

@@ -6,10 +6,17 @@ var farveInput = 3;
 var labelCount = 1;
 var navnInput = "Cloud Gazing";
 var stilInput = "West Coast IPA";
+var beskrivelseInput = "is a modern West Coast IPA boasting a blend of hops that express citrus fruits. evergreen forest, and an approachable bitterness";
+var filtreretInput = "Unpasteurised / Ufiltreret";
+var ingrediensInput = "water, BARLEY, WHEAT, hops (Mosaic, Idaho 7, Columbus, Chinook), yeast\nBYG, KORN, BYGG, OHRA, CEBADA, ORGE, ORZO, GERST, GERSTE/HVEDE, (H)VETE, VEHNÄ, TRIGO, DU BLÉ, GRANO, TARWE, WEIZEN";
 var clInput = "44";
 var alkoholInput = "6.2";
 
 function setupControls() {
+
+  numsControl = { min: 500, max: 1000, value: 700 };
+  noiseScaleControl = { min: 10, max: 1250, value: 200 };
+  stepsControl = { min: 500, max: 1000, value: 800 };
 
   // Tekst
   const navnControl = document.getElementById("navn");
@@ -20,6 +27,21 @@ function setupControls() {
   const stilControl = document.getElementById("stil");
   stilControl.addEventListener("sl-input", () => {
     stilInput = stilControl.value || "";
+  });
+
+  const beskrivelseControl = document.getElementById("beskrivelse");
+  beskrivelseControl.addEventListener("sl-input", () => {
+    beskrivelseInput = beskrivelseControl.value || "";
+  });
+
+  const ingrediensControl = document.getElementById("ingredienser");
+  ingrediensControl.addEventListener("sl-input", () => {
+    ingrediensInput = ingrediensControl.value || "";
+  });
+
+  const filterControl = document.getElementById("filter");
+  filterControl.addEventListener("sl-input", () => {
+    filtreretInput = filterControl.value || "";
   });
 
   const clControl = document.getElementById("cl");
@@ -53,23 +75,23 @@ function setupControls() {
     }
   });
 
-  numsControl = document.getElementById("nums");
-  numsControl.value = nums;
-  numsControl.addEventListener("sl-input", () => {
-    nums = Number(numsControl.value);
-  });
+  // numsControl = document.getElementById("nums");
+  // numsControl.value = nums;
+  // numsControl.addEventListener("sl-input", () => {
+  //   nums = Number(numsControl.value);
+  // });
 
-  noiseScaleControl = document.getElementById("noiseScale");
-  noiseScaleControl.value = noiseScale;
-  noiseScaleControl.addEventListener("sl-input", () => {
-    noiseScale = Number(noiseScaleControl.value);
-  });
+  // noiseScaleControl = document.getElementById("noiseScale");
+  // noiseScaleControl.value = noiseScale;
+  // noiseScaleControl.addEventListener("sl-input", () => {
+  //   noiseScale = Number(noiseScaleControl.value);
+  // });
 
-  stepsControl = document.getElementById("steps");
-  stepsControl.value = steps;
-  stepsControl.addEventListener("sl-input", () => {
-    steps = Number(stepsControl.value);
-  });
+  // stepsControl = document.getElementById("steps");
+  // stepsControl.value = steps;
+  // stepsControl.addEventListener("sl-input", () => {
+  //   steps = Number(stepsControl.value);
+  // });
 
   const createControl = document.getElementById("create");
   createControl.addEventListener("click", () => {
@@ -85,11 +107,8 @@ function setupControls() {
   const ImgControl = document.getElementById("nytImg");
   ImgControl.addEventListener("click", () => {
     getImg();
-  });
-
-  const randomizeControl = document.getElementById("randomize");
-  randomizeControl.addEventListener("click", () => {
-    randomizeParameters();
+    getColors();
+    newPattern();
   });
 
   const gemControl = document.getElementById("gem");
@@ -98,24 +117,4 @@ function setupControls() {
     saveCanvas(cnv, `${navnInput}_label_${nummer}`, "png");
     labelCount++;
   });
-}
-
-function randomizeParameters() {
-  randomSeed(millis());
-
-  numsControl.value = random(Number(numsControl.min), Number(numsControl.max));
-  noiseScaleControl.value = random(Number(noiseScaleControl.min), Number(noiseScaleControl.max));
-  stepsControl.value = random(Number(stepsControl.min), Number(stepsControl.max));
-
-  nums = Number(numsControl.value);
-  noiseScale = Number(noiseScaleControl.value);
-  steps = Number(stepsControl.value);
-
-  console.log({ nums, noiseScale, steps });
-
-  numsControl.dispatchEvent(new CustomEvent("sl-input", { detail: { value: numsControl.value } }));
-  noiseScaleControl.dispatchEvent(new CustomEvent("sl-input", { detail: { value: noiseScaleControl.value } }));
-  stepsControl.dispatchEvent(new CustomEvent("sl-input", { detail: { value: stepsControl.value } }));
-
-  newPattern();
 }

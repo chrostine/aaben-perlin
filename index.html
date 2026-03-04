@@ -11,39 +11,45 @@
 </head>
 
 <body>
-  <div id="container">
-    <div id="nav">
-      <sl-details summary="Opret øl">
+  <div id="app">
+    <div id="controls">
+      <div id="nav">
+      <sl-details summary="Data editor">
         <div id="dropned">
-          <sl-input label="Navn" id="navn" placeholder="Cloud Gazing" maxlength="30" size="small" pill></sl-input>
-          <sl-input label="Stilart" id="stil" placeholder="West Coast IPA" maxlength="30" size="small" pill></sl-input>
-          <sl-input label="CL" id="cl" placeholder="44" maxlength="4" size="small" pill></sl-input>
-          <sl-input label="ABV" id="alkohol" placeholder="6.2" maxlength="15" size="small" pill></sl-input>
-          <sl-input label="IBU" id="bitter" placeholder="16" maxlength="15" size="small" pill></sl-input>
-          <sl-button id="update">Opdater</sl-button>
+          <sl-input class="label-on-left" label="Name" id="navn" placeholder="Cloud Gazing" maxlength="30" size="small"></sl-input>
+          <sl-input class="label-on-left" label="Style" id="stil" placeholder="West Coast IPA" maxlength="30" size="small"></sl-input>
+          <sl-textarea class="label-on-left" label="Descripton" id="beskrivelse" placeholder="is a modern West Coast IPA boasting a blend of hops that express citrus fruits. evergreen forest, and an approachable bitterness" maxlength="150" size="small" resize="auto"></sl-textarea>
+          <sl-textarea class="label-on-left" label="Ingredients" id="ingredienser" placeholder="water, BARLEY, WHEAT, hops (Mosaic, Idaho 7, Columbus, Chinook), yeast. BYG, KORN, BYGG, OHRA, CEBADA, ORGE, ORZO, GERST, GERSTE/HVEDE, (H)VETE, VEHNÄ, TRIGO, DU BLÉ, GRANO, TARWE, WEIZEN" maxlength="150" size="small" resize="auto" ></sl-textarea>
+          <sl-input class="label-on-left" label="Pasteurization" id="filter" placeholder="Unpasteurised / Ufiltreret" maxlength="50" size="small"></sl-input>
+          <sl-input class="label-on-left" label="CL" id="cl" placeholder="44" maxlength="4" size="small"></sl-input>
+          <sl-input class="label-on-left" label="ABV" id="alkohol" placeholder="6.2" maxlength="15" size="small"></sl-input>
+          <sl-input class="label-on-left" label="IBU" id="bitter" placeholder="16" maxlength="15" size="small"></sl-input>
+          <sl-button id="update" class="primary">SUBMIT DATA</sl-button>
         </div>
       </sl-details>
-
-      <sl-details summary="Udvikler">
-        <div id="dropned">
-          <sl-range label="Partikler" id="nums" min="500" max="1000" value="200" step="1"></sl-range>
-          <sl-range label="Noise scale" id="noiseScale" min="10" max="1000" value="200" step="1"></sl-range>
-          <sl-range label="Steps" id="steps" min="500" max="1000" value="800" step="1"></sl-range>
-          <sl-button id="randomize">Tilfældig</sl-button>
+      <sl-details summary="Color editor">
+        <p>This generator samples colors directly from an image on the web to create a unique color palette based on the image’s visual tones. Please avoid generating a new palette too many times in a row, as each new sample pulls a fresh set of colors from the image.</p>
+        <div id="dropned-buttons">
+          <sl-button id="nytImg" class="secondary">Generate new color palette</sl-button>
+          <sl-button id="create" class="primary">NEW SAMPLE</sl-button>
         </div>
       </sl-details>
-      
-      <sl-button id="create">Lav ny</sl-button>
-      <sl-button id="nytImg">Ny farvepalette</sl-button>
-      <sl-button id="gem">Gem label</sl-button>
+      <div id="dropned-buttons">
+        <sl-button id="previewKnap" class="secondary">3D preview</sl-button>
+        <sl-button id="gem" class="primary">SAVE LABEL</sl-button>
+      </div>
+      </div>
     </div>
     <div id="label"></div>
+    <div id="threejs"></div>
   </div>
   <script src="scripts/controls.js"></script>
   <script src="scripts/img.js"></script>
-  <script src="scripts/farve.js"></script>
   <script src="scripts/perlin.js"></script>
+  <script src="scripts/tekst.js"></script>
   <script src="sketch.js"></script>
+  <script src="toggle.js"></script>
+  <script type="module" src="three.js"></script>
 </body>
 
 </html>
