@@ -78,7 +78,7 @@ function draw() {
   text(stilInput, 1275, 355)
 
   textSize(45);
-  text(clInput + " cl / Alc. " + alkoholInput +"% vol.", 1275, 395)
+  text(clInput + " cl / Alc. " + alkoholInput +"% vol.", 1275, 400)
 
   textSize(30);
   text(beskrivelseInput, 1275, 420, 615, 400)
