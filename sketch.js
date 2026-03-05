@@ -80,10 +80,10 @@ function draw() {
   textSize(45);
   text(clInput + " cl / Alc. " + alkoholInput +"% vol.", 1275, 395)
 
-  textSize(32);
-  text(beskrivelseInput, 1275, 425, 620, 400)
+  textSize(30);
+  text(beskrivelseInput, 1275, 420, 615, 400)
 
   textSize(25);
-  text(filtreretInput, 1275, 608)
-  drawIngredients("Ingredients: " + ingrediensInput, 1275, 665, 615, 400)
+  text(filtreretInput, 1275, 625)
+  drawIngredients("Ingredients: " + ingrediensInput, 1275, 675, 610, 400)
 }
