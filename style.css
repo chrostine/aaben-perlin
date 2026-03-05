@@ -1,10 +1,11 @@
 :root {
   --controls-color: #ededed;
-  --primary-knap-color: #262626; /* global scope */
+  --primary-knap-color: #666666; /* global scope */
   --secondary-knap-color: white; /* global scope */
   --primary-text-color: white; /* global scope */
   --secondary-text-color: black; /* global scope */
   --baggrund-color: #848484;
+  --submit-color: #262626;
 }
 
 html,
@@ -121,6 +122,11 @@ sl-button.primary::part(base) {
 sl-button.secondary::part(base) {
   background-color: var(--secondary-knap-color);
   color: var(--secondary-text-color)
+}
+
+sl-button.submit::part(base) {
+  background-color: var(--submit-color);
+  color: var(--primary-text-color)
 }
 
 sl-textarea::part(textarea)::placeholder {

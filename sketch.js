@@ -81,7 +81,7 @@ function draw() {
   text(clInput + " cl / Alc. " + alkoholInput +"% vol.", 1275, 395)
 
   textSize(32);
-  text(navnInput + " " + beskrivelseInput, 1275, 425, 620, 400)
+  text(beskrivelseInput, 1275, 425, 620, 400)
 
   textSize(25);
   text(filtreretInput, 1275, 608)
